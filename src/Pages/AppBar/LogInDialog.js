@@ -41,18 +41,19 @@ function MyDialog() {
 		clearDialogErrors();
 	};
 
+	const handleLogin = () => {
+		setIsLoggedIn(true);
+		setLoggedInAs(usernameInput);
+		closeDialog();
+	};
+
 	const handleSignUp = () => {
 		setUsers(prevUsers => [
 			...prevUsers,
 			{ user: usernameInput, pass: passInput },
 		]);
 		clearDialogErrors();
-	};
-
-	const handleLogin = () => {
-		setIsLoggedIn(true);
-		setLoggedInAs(usernameInput);
-		closeDialog();
+		handleLogin();
 	};
 
 	const errorHandler = () => {
@@ -72,9 +73,11 @@ function MyDialog() {
 				setUsernameError(true);
 				setUsernameErrorText('Username already exists');
 			} else if (userInput.user.length < 4) {
+				clearDialogErrors();
 				setUsernameError(true);
 				setUsernameErrorText('Username must be at least 4 characters');
 			} else if (usernameRegex.test(userInput.user)) {
+				clearDialogErrors();
 				setUsernameError(true);
 				setUsernameErrorText(
 					'Username can only contain alphanumeric characters'
@@ -84,10 +87,16 @@ function MyDialog() {
 				setPasswordError(true);
 				setPasswordErrorText('Password must be at least 5 characters long');
 			} else if (passRegex.test(userInput.pass) === false) {
+				clearDialogErrors();
 				setPasswordError(true);
 				setPasswordErrorText(
-					'Password must contain a lowercase character, uppercase character, digit and a symbol'
-				);
+					<> 
+					Password must contain a 
+					<br />
+					 lowercase and uppercase letter,
+					<br /> a digit, and a symbol
+					<br /> 
+				</> );
 			} else {
 				setUsernameError(false);
 				handleSignUp();
@@ -111,7 +120,7 @@ function MyDialog() {
 	};
 
 	return (
-		<Dialog open={dialogOpen}>
+		<Dialog open={dialogOpen} >
 			<RadioGroup
 				row
 				value={dialogPage}
