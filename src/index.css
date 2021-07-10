@@ -1,0 +1,10 @@
+body {
+	background-color: whitesmoke;
+}
+
+.verticalCenter {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
