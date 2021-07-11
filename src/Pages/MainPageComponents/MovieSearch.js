@@ -8,15 +8,23 @@ function MovieSearch() {
 	const { movies, searchText, setSearchText } = useContext(Context);
 
 	return (
-		<Grid container direction="column" style={{marginTop: "80px", alignItems: "center"}} >
-			<Autocomplete 
-				style={{width: "50%"}}
+		<Grid
+			container
+			direction='column'
+			style={{ marginTop: '80px', alignItems: 'center' }}
+		>
+			<Autocomplete
+				style={{ width: '50%' }}
 				id='MovieSearch'
 				options={movies}
 				getOptionLabel={option => option.title}
 				onChange={(e, value) => setSearchText(value)}
 				renderInput={params => (
-					<TextField {...params} label='Movies' style={{textAlign: "center"}}/>
+					<TextField
+						{...params}
+						label='Movies'
+						style={{ textAlign: 'center' }}
+					/>
 				)}
 			/>
 			<Button

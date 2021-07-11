@@ -38,6 +38,7 @@ function MoviePage(props) {
 				Runtime: {`${movieInfo.runtime} min`}
 			</Typography>
 			<Typography className={classes.typography}>{movieInfo.plot}</Typography>
+			<Typography className={classes.typography}>{`Genres: ${movieInfo.genres.join(", ")}`}</Typography>
 		</Grid>
 	) : (
 		<Typography>Loading...</Typography>

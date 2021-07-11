@@ -8,11 +8,10 @@ import CartPage from './Pages/CartPage';
 import MyAppBar from './Pages/AppBar/MyAppBar';
 import YourUploads from './Pages/UploadPageComponents/YourUploads';
 import MoviePage from './Pages/MoviePage';
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './Theme';
 
 function App() {
-
 	return (
 		<ContextProvider>
 			<ThemeProvider theme={theme}>

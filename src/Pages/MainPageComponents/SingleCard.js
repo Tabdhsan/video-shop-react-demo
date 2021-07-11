@@ -7,14 +7,15 @@ import {
 	CardActions,
 	IconButton,
 	Grid,
+	Paper,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import { AddShoppingCart } from '@material-ui/icons';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 
 function SingleCard({ children }) {
-	const { setMovies, setCartItems, loggedInAs, movies } =
-		useContext(Context);
+	const { setMovies, setCartItems, loggedInAs, movies } = useContext(Context);
 
 	const deleteIconClicker = () => {
 		if (children.uploader !== loggedInAs) {
@@ -27,27 +28,30 @@ function SingleCard({ children }) {
 		}
 	};
 
+	const useStyles = makeStyles({
+		cardStyle: {
+			backgroundColor: 'lightblue',
+			margin: '10px',
+			textAlign: 'center',
+			paddingTop: '10px',
+		},
+		cardActionStyle: { padding: '0', justifyContent: 'center' },
+	});
+
+	const classes = useStyles();
 
 	return (
 		<Grid item xs={12} sm={6} md={3}>
-			<Card
-				key={children.id}
-				id={children.title}
-				style={{
-					backgroundColor: 'lightblue',
-					margin: '10px',
-					textAlign: 'center',
-					paddingTop: '10px',
-				}}
-			>
-				<a href={`/movies/${children.id}`}>
-					<img
-						src={`${children.posterUrl}`}
-						alt={`${children.title} poster`}
-						width='200'
-						height='300'
-					/>
-				</a>
+			<Card key={children.id} id={children.title} className={classes.cardStyle}>
+
+					<Paper variant="outlined" component={Link} to={`/movies/${children.id}`}>
+						<img
+							src={`${children.posterUrl}`}
+							alt={`${children.title} poster`}
+							width='200'
+							height='300'
+						/>
+					</Paper>
 
 				<CardContent>
 					<Typography
@@ -59,7 +63,7 @@ function SingleCard({ children }) {
 					</Typography>
 					<Typography variant='body2'>{`$${children.price}`} </Typography>
 				</CardContent>
-				<CardActions style={{ padding: '0', justifyContent: 'center' }}>
+				<CardActions className={classes.cardActionStyle}>
 					{movies.some(movie => children.title === movie.title) &&
 					children.uploader !== loggedInAs ? (
 						<IconButton
@@ -75,8 +79,8 @@ function SingleCard({ children }) {
 							<AddShoppingCart />
 						</IconButton>
 					) : (
-						<IconButton>
-							<DeleteRoundedIcon onClick={deleteIconClicker} />
+						<IconButton onClick={deleteIconClicker}>
+							<DeleteRoundedIcon />
 						</IconButton>
 					)}
 				</CardActions>

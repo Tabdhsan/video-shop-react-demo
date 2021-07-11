@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from 'react';
 import { Context } from '../../Context';
-import { Grid, Chip} from '@material-ui/core';
-
+import { Grid, Chip } from '@material-ui/core';
 
 function MainPageGenres() {
 	const {
@@ -16,7 +15,6 @@ function MainPageGenres() {
 	useEffect(() => {
 		setDefaultGenres(genres.sort());
 	}, [genres]);
-
 
 	const defaultGenresChips = defaultGenres.map(genre => (
 		<Chip
@@ -49,7 +47,7 @@ function MainPageGenres() {
 	));
 
 	return (
-		<Grid style={{textAlign: "center", margin: "2%"}}>
+		<Grid style={{ textAlign: 'center', margin: '2%' }}>
 			{pickedGenresChips}
 			{defaultGenresChips}
 		</Grid>

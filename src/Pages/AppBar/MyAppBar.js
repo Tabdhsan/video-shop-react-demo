@@ -41,17 +41,11 @@ function MyAppBar() {
 				<Grid style={{ flexGrow: '1' }} />
 				<Grid>
 					{isLoggedIn ? (
-						<Button
-							onClick={logout}
-							component={Link}
-							to={'/MainPage'}
-						>
+						<Button onClick={logout} component={Link} to={'/MainPage'}>
 							LogOut
 						</Button>
 					) : (
-						<Button onClick={dialogOpener}>
-							LogIn
-						</Button>
+						<Button onClick={dialogOpener}>LogIn</Button>
 					)}
 					<MyDialog />
 					<IconButton component={Link} to={'/CartPage'}>

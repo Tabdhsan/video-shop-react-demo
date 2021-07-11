@@ -30,7 +30,7 @@ function YourUploads() {
 				</Typography>
 			</Grid>
 
-			<Grid xs={12}>
+			<Grid item xs={12}>
 				<Button onClick={tester}>Add a video</Button>
 			</Grid>
 			<UploadDialog />

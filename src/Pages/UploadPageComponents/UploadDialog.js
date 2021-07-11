@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../../Context';
-import { TextField, Button, Typography, Dialog } from '@material-ui/core';
+import { TextField, Button, Dialog } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 
 function UploadDialog() {
@@ -14,8 +14,8 @@ function UploadDialog() {
 	} = useContext(Context);
 	const [userVidName, setUserVidName] = useState('');
 	const [userVidPrice, setUserVidPrice] = useState('');
-	const [userVidGenre, setUserVidGenre] = useState();
-	const [userVidPlot, setUserVidPlot] = useState();
+	const [userVidGenre, setUserVidGenre] = useState([]);
+	const [userVidPlot, setUserVidPlot] = useState('');
 	const [userVidRuntime, setUserVidRuntime] = useState();
 
 	const movieDuplicationCheck = movies.some(
@@ -28,7 +28,7 @@ function UploadDialog() {
 			{
 				id: parseInt(prevMovies[prevMovies.length - 1].id) + 1,
 				title: userVidName,
-				genres: [userVidGenre],
+				genres: userVidGenre,
 				posterUrl: 'https://i.imgur.com/eh0X0Rn.jpg',
 				price: userVidPrice,
 				uploader: loggedInAs,
@@ -46,25 +46,19 @@ function UploadDialog() {
 
 	return (
 		<Dialog open={uploadDialog}>
-			<Typography variant='h5' align='center' >
-				Upload a vid
-			</Typography>
 			<TextField
 				id='Vid Name'
 				label='Vid Name'
 				onChange={e => setUserVidName(e.target.value)}
-				
 			/>
 			<TextField
 				label='Vid Price'
 				onChange={e => setUserVidPrice(e.target.value)}
-				
 			/>
 
 			<TextField
 				label='Runtime (min)'
 				onChange={e => setUserVidRuntime(e.target.value)}
-				
 			/>
 
 			<TextField
@@ -73,25 +67,28 @@ function UploadDialog() {
 				rows={2}
 				rowsMax={4}
 				onChange={e => setUserVidPlot(e.target.value)}
-				
 			/>
 
 			<Autocomplete
 				multiple
+				fullWidth
 				options={genres}
 				getOptionLabel={option => option}
 				filterSelectedOptions
 				onChange={(e, value) => setUserVidGenre(value)}
 				renderInput={params => (
-					<TextField {...params} label='Genres' />
+					<TextField
+						{...params}
+						label='Genres'
+						style={{ width: '80%', marginLeft: '10%', marginBottom: '10px' }}
+					/>
 				)}
-				
 			/>
 			<Button
 				disabled={
 					movieDuplicationCheck ||
 					userVidName === '' ||
-					userVidGenre === '' ||
+					(userVidGenre !== undefined && userVidGenre.length === 0) ||
 					userVidPrice === '' ||
 					isNaN(parseInt(userVidPrice)) ||
 					isNaN(parseInt(userVidRuntime)) ||
