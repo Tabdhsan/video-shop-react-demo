@@ -8,7 +8,7 @@ function YourUploads() {
 	const { uploadDialog, setUploadDialog, movies, loggedInAs } =
 		useContext(Context);
 
-	const tester = () => {
+	const uploadDialogChanger = () => {
 		setUploadDialog(!uploadDialog);
 	};
 
@@ -31,7 +31,7 @@ function YourUploads() {
 			</Grid>
 
 			<Grid item xs={12}>
-				<Button onClick={tester}>Add a video</Button>
+				<Button onClick={uploadDialogChanger}>Add a video</Button>
 			</Grid>
 			<UploadDialog />
 
