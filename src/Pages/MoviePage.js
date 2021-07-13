@@ -39,6 +39,8 @@ function MoviePage(props) {
 			</Typography>
 			<Typography className={classes.typography}>{movieInfo.plot}</Typography>
 			<Typography className={classes.typography}>{`Genres: ${movieInfo.genres.join(", ")}`}</Typography>
+			
+		
 		</Grid>
 	) : (
 		<Typography>Loading...</Typography>

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Context } from '../../Context';
 import {
 	Card,
@@ -9,7 +10,6 @@ import {
 	Grid,
 	Paper,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { AddShoppingCart } from '@material-ui/icons';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
