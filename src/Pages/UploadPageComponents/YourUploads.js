@@ -29,7 +29,6 @@ function YourUploads() {
 					Your Uploads
 				</Typography>
 			</Grid>
-
 			<Grid item xs={12}>
 				<Button onClick={uploadDialogChanger}>Add a video</Button>
 			</Grid>
